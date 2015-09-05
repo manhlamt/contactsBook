@@ -41,13 +41,13 @@ var ContactSchema = new Schema({
 	},
 	addresses: [
 		{
-			addressLine1: {
+			line1: {
 				type: String,
 				default: '',
 				required: 'Please input address line 1',
 				trim: true,
 			},
-			addressLine2: {
+			line2: {
 				type: String,
 				default: '',
 				required: 'Please input addresss line 2',
