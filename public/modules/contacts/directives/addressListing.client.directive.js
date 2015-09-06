@@ -44,6 +44,9 @@ angular.module('contacts').directive('addressListing', ['$modal',
                         });
 
                         modalInstance.result.then(function (address) {
+                            if ($scope.blocks.length === 0)
+                                address.isActive = true;
+
                             $scope.blocks.push(address);
                         });
 
