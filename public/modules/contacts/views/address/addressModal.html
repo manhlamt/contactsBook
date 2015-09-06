@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add Address</h3>
+</div>
+<div class="modal-body container-fluid">
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="" name="addressForm" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="line1">Address Line 1</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="item.line1" id="line1" name="line1" minlength="3" class="form-control" placeholder="Address line 1" required>
+                        <span ng-show="addressForm.line1.$invalid && addressForm.line1.$dirty" class="help-block text-warning">Valid address is required.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="line2">Address Line 2</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="item.line2" id="line2" name="line2" minlength="3" class="form-control" placeholder="Address line 2" required>
+                        <span ng-show="addressForm.line2.$invalid && addressForm.line2.$dirty" class="help-block text-warning">Valid address is required.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="item.phone" id="phone" name="phone" min="10000000" class="form-control" placeholder="eg: 097744282" required>
+                        <span ng-show="addressForm.phone.$invalid && addressForm.phone.$dirty" class="help-block text-warning">Valid phone number is required.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="postalCode">Line 1</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="item.postalCode" id="postalCode" name="postalCode" minlength="5" class="form-control" placeholder="Postal Code" required>
+                        <span ng-show="addressForm.postalCode.$invalid && addressForm.postalCode.$dirty" class="help-block text-warning">Valid postal code is required.</span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="save(addressForm.$valid)">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

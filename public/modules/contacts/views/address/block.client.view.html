@@ -1,0 +1,11 @@
+<address ng-class="{'active': address.isActive}">
+    <div>{{address.line1}}</div>
+    <div>{{address.line2}}</div>
+    <abbr title="Phone">Phone:</abbr> {{address.phone}}<br/>
+    <abbr title="Postal">Postal:</abbr> {{address.postalCode}}
+    <div class="actions pull-right">
+        <i class="glyphicon" ng-class="{'glyphicon-check':address.isActive, 'glyphicon-unchecked':!address.isActive}" data-ng-click="activate(address)"></i>
+        <i class="glyphicon glyphicon-edit"></i>
+        <i class="glyphicon glyphicon-trash" data-ng-click="delete(index)"></i>
+    </div>
+</address>

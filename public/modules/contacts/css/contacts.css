@@ -1,0 +1,10 @@
+address {
+    padding: 5px;
+    border: 1px solid #cacaca;
+}
+
+.contact-block {
+    margin: 10px;
+    border: 1px solid #cacaca;
+    padding: 10px;
+}

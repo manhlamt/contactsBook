@@ -2,17 +2,53 @@
     <div class="page-header">
         <h1>New Contact</h1>
     </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+    <div class="col-md-6">
+        <form class="form-horizontal" data-ng-submit="create(contactForm.$valid)" name="contactForm" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="firstName">First Name</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="firstName" id="firstName" name="firstName" minlength="2" class="form-control" placeholder="First Name" required>
+                        <span ng-show="contactForm.firstName.$invalid && contactForm.firstName.$dirty" class="help-block text-warning">First name is not valid.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <label class="control-label" for="lastname">Last Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="lastName" id="lastname" name="lastName" minlength="2" class="form-control" placeholder="Last Name" required>
+                        <span ng-show="contactForm.lastName.$invalid && contactForm.lastName.$dirty" class="help-block text-warning">Last name is not valid.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                        <input type="email" data-ng-model="email" id="email" name="email" class="form-control" placeholder="eg: emai@domain.com" required>
+                        <span ng-show="contactForm.email.$invalid && contactForm.email.$dirty" class="help-block text-warning">Emaail is not valid.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="phone" name="phone" id="phone" class="form-control" placeholder="eg: 0948448234" required>
+                        <span ng-show="contactForm.phone.$invalid && contactForm.phone.$dirty" class="help-block text-warning"> Phone is not valid.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender-radio" class="form-label">Gender</label>
+                    <div class="controls" id="gender-radio">
+                        <label class="checkbox-inline">
+                            <input type="radio" id="gender-male" value="m" name="gemder" data-ng-model="gender"> Male
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" id="gender-female" value="f" name="gemder" data-ng-model="gender"> Female
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" id="gender-undefined" value="u" name="gemder" data-ng-model="gender"> You tell me
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="Create" data-ng-disabled="contactForm.$invalid">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
@@ -20,4 +56,5 @@
             </fieldset>
         </form>
     </div>
+    <div class="col-md-6" address-listing addresses="addresses"></div>
 </section>

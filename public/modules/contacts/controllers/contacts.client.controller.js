@@ -5,16 +5,45 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, Contacts) {
 		$scope.authentication = Authentication;
 
+		$scope.gender = 'm';
+
+		$scope.addresses = [];
+
+		//Test data
+		$scope.addresses = [
+			{
+				line1: 'Line 1 1 of address',
+				line2: 'Line 2 of address',
+				postalCode: 'postalCode',
+				phone: '091241232',
+				isActive: true
+			},
+			{
+				line1: 'Line 1 2 of address asd',
+				line2: 'Line 2 of address asd ',
+				postalCode: 'postalCodeasdasd',
+				phone: '0124123213',
+				isActive: false
+			}
+		];
+
 		// Create new Contact
-		$scope.create = function() {
+		$scope.create = function(valid) {
+			if (!valid) return false;
 			// Create new Contact object
 			var contact = new Contacts ({
-				name: this.name
+				name: this.name,
+				firstName: this.firstName,
+				lastName: this.lastName,
+				email: this.email,
+				phone: this.phone,
+				gender: this.gender,
+				addresses: this.addresses
 			});
 
 			// Redirect after save
 			contact.$save(function(response) {
-				$location.path('contacts/' + response._id);
+				$location.path('contacts/');
 
 				// Clear form fields
 				$scope.name = '';
@@ -35,7 +64,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 				}
 			} else {
 				$scope.contact.$remove(function() {
-					$location.path('contacts');
+					$location.path('contacts/');
 				});
 			}
 		};
@@ -54,6 +83,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 		// Find a list of Contacts
 		$scope.find = function() {
 			$scope.contacts = Contacts.query();
+			//console.log($scope.contacts);
 		};
 
 		// Find existing Contact

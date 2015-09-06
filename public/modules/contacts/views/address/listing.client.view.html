@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h3 class="pull-left panel-title">Addresses</h3>
+        <div class="actions pull-right">
+            <a data-ng-click="addAddress()"><i class="glyphicon glyphicon-plus"></i></a>
+        </div>
+    </div>
+    <ul class="panel-body list-unstyled">
+        <li data-ng-repeat="block in blocks">
+            <div address-block address="block" index="$index"></div>
+        </li>
+    </ul>
+</div>

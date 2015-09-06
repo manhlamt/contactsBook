@@ -7,6 +7,9 @@ angular.module('contacts').factory('Contacts', ['$resource',
 		}, {
 			update: {
 				method: 'PUT'
+			},
+			query: {
+				isArray: true
 			}
 		});
 	}
