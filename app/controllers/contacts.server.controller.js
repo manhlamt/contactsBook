@@ -72,8 +72,12 @@ exports.delete = function(req, res) {
 /**
  * List of Contacts
  */
-exports.list = function(req, res) { 
-	Contact.find().sort('-created').populate('user', 'displayName').exec(function(err, contacts) {
+exports.list = function(req, res) {
+	var cond = {};
+	if (req.query.user)
+		cond.user = req.query.user;
+
+	Contact.find(cond).sort('-created').populate('user', 'displayName').exec(function(err, contacts) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
