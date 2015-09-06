@@ -172,8 +172,11 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		// Find a list of Contacts
 		$scope.find = function() {
+			console.log($scope.authentication);
 			$scope.loading = true;
-			$scope.contacts = Contacts.query(function () {
+			$scope.contacts = Contacts.query({
+				user: $scope.authentication.user._id
+			},function () {
 				$scope.loading = false;
 			});
 			//console.log($scope.contacts);
@@ -182,7 +185,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 		// Find existing Contact
 		$scope.findOne = function() {
 			console.log($stateParams.contactId);
-			if ($stateParams.contactId == '') {
+			if ($stateParams.contactId === '') {
 				$location.path('contacts');
 			} else {
 				$scope.loading = true;
