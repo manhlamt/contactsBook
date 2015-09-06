@@ -1,12 +1,12 @@
 <section data-ng-controller="ContactsController" data-ng-init="findOne()">
 	<div class="page-header clearfix">
 		<h1 class="pull-left">View Contact</h1>
-		<h2 class="action pull-right">
+		<h2 class="action pull-right" data-ng-show="!loading">
 			<a href="/#!/contacts/{{contact._id}}/edit"><i class="glyphicon glyphicon-edit"></i></a>
 			<a data-ng-click="remove();"><i class="glyphicon glyphicon-trash"></i></a>
 		</h2>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6" data-ng-show="!loading">
 		<form class="form-horizontal" data-ng-submit="create(contactForm.$valid)" name="contactForm" novalidate>
 			<fieldset>
 				<div class="form-group">
@@ -53,5 +53,9 @@
 			</em>
 		</small>
 	</div>
-	<div class="col-md-6" address-listing addresses="contact.addresses" address-view-only="true"></div>
+	<div data-ng-show="!loading" class="col-md-6" address-listing addresses="contact.addresses" address-view-only="true"></div>
+	<div class="progress" data-ng-show="loading">
+		<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+		</div>
+	</div>
 </section>

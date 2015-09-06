@@ -68,16 +68,21 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		// Find a list of Contacts
 		$scope.find = function() {
-			$scope.contacts = Contacts.query();
+			$scope.loading = true;
+			$scope.contacts = Contacts.query(function () {
+				$scope.loading = false;
+			});
 			//console.log($scope.contacts);
 		};
 
 		// Find existing Contact
 		$scope.findOne = function() {
+			$scope.loading = true;
 			$scope.contact = Contacts.get({ 
 				contactId: $stateParams.contactId
+			}, function () {
+				$scope.loading = false;
 			});
-			console.log($scope.contact);
 		};
 	}
 ]);

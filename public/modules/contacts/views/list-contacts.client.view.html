@@ -2,7 +2,7 @@
     <div class="page-header">
         <h1>Contacts</h1>
     </div>
-    <div class="row">
+    <div class="row" data-ng-show="!loading">
         <div data-ng-repeat="contact in contacts" class="col-md-4">
             <a data-ng-href="#!/contacts/{{contact._id}}" class=" contact-block">
                 <strong>{{contact.firstName}} {{contact.lastName}}</strong><br />
@@ -16,6 +16,10 @@
                     {{address.postalCode}}
                 </p>
             </a>
+        </div>
+    </div>
+    <div class="progress" data-ng-show="loading">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
         </div>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!contacts.$resolved || contacts.length">
