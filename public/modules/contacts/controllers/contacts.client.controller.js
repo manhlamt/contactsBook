@@ -36,7 +36,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		// Remove existing Contact
 		$scope.remove = function(contact) {
-			if (confirm("Are you sure you want to delete this contact ?")) {
+			if (confirm('Are you sure you want to delete this contact ?')) {
 				if ( contact ) {
 					contact.$remove();
 
@@ -82,9 +82,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 				contactId: $stateParams.contactId
 			}, function () {
 				$scope.loading = false;
-				;
-				console.log($scope.contact.phone)
-			})
+			});
 		};
 	}
 ]);

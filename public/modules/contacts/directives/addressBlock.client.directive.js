@@ -5,6 +5,8 @@
  * Created by lam on 5/9/15.
  */
 
+'use strict';
+
 angular.module('contacts').directive('addressBlock', ['$modal',
     function ($modal) {
         return {
@@ -39,14 +41,10 @@ angular.module('contacts').directive('addressBlock', ['$modal',
                             }
                         }
                     });
-
-                    //modalInstance.result.then(function (address) {
-                    //    $scope.blocks.push(address);
-                    //});
                 };
 
-                scope.viewOnly = (attrs.addressViewOnly && attrs.addressViewOnly !== 'false')
+                scope.viewOnly = (attrs.addressViewOnly && attrs.addressViewOnly !== 'false');
             }
-        }
+        };
     }
 ]);

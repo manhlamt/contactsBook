@@ -2,10 +2,10 @@
  * Created by lam on 5/9/15.
  */
 
+'use strict';
 angular.module('contacts').controller('AddressController', ['$scope', '$modalInstance','item',
     function ($scope, $modalInstance, item) {
-        console.log(item);
-        if (item == undefined)
+        if (item === undefined)
             $scope.item = {};
         else
             $scope.item = item;

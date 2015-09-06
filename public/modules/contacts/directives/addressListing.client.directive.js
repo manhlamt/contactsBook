@@ -2,6 +2,7 @@
  * Created by lam on 5/9/15.
  */
 
+'use strict';
 angular.module('contacts').directive('addressListing', ['$modal',
     function ($modal) {
         return {
@@ -53,11 +54,11 @@ angular.module('contacts').directive('addressListing', ['$modal',
                     } else {
                         alert('Opps, you can not have more than 3 address at a time');
                     }
-                }
+                };
             },
             link: function (scope, element, attrs) {
-                scope.viewOnly = (attrs.addressViewOnly && attrs.addressViewOnly !== 'false')
+                scope.viewOnly = (attrs.addressViewOnly && attrs.addressViewOnly !== 'false');
             }
-        }
+        };
     }
 ]);
