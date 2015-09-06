@@ -9,24 +9,6 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		$scope.addresses = [];
 
-		//Test data
-		$scope.addresses = [
-			{
-				line1: 'Line 1 1 of address',
-				line2: 'Line 2 of address',
-				postalCode: 'postalCode',
-				phone: '091241232',
-				isActive: true
-			},
-			{
-				line1: 'Line 1 2 of address asd',
-				line2: 'Line 2 of address asd ',
-				postalCode: 'postalCodeasdasd',
-				phone: '0124123213',
-				isActive: false
-			}
-		];
-
 		// Create new Contact
 		$scope.create = function(valid) {
 			if (!valid) return false;
@@ -54,23 +36,27 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		// Remove existing Contact
 		$scope.remove = function(contact) {
-			if ( contact ) { 
-				contact.$remove();
+			if (confirm("Are you sure you want to delete this contact ?")) {
+				if ( contact ) {
+					contact.$remove();
 
-				for (var i in $scope.contacts) {
-					if ($scope.contacts [i] === contact) {
-						$scope.contacts.splice(i, 1);
+					for (var i in $scope.contacts) {
+						if ($scope.contacts [i] === contact) {
+							$scope.contacts.splice(i, 1);
+						}
 					}
+				} else {
+					$scope.contact.$remove(function() {
+						$location.path('contacts');
+					});
 				}
-			} else {
-				$scope.contact.$remove(function() {
-					$location.path('contacts/');
-				});
 			}
 		};
 
 		// Update existing Contact
-		$scope.update = function() {
+		$scope.update = function(valid) {
+			if (!valid) return false;
+
 			var contact = $scope.contact;
 
 			contact.$update(function() {
@@ -91,6 +77,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 			$scope.contact = Contacts.get({ 
 				contactId: $stateParams.contactId
 			});
+			console.log($scope.contact);
 		};
 	}
 ]);

@@ -3,18 +3,20 @@
         <h1>Contacts</h1>
     </div>
     <div class="row">
-        <address data-ng-repeat="contact in contacts" data-ng-href="#!/contacts/{{contact._id}}" class="col-md-4 contact-block">
-			<strong>{{contact.firstName}} {{contact.lastName}}</strong><br />
-            <abbr title="Email">Email:</abbr>{{contact.email}}<br/>
-            <abbr title="Phone">Phone:</abbr> {{contact.phone}}<br/>
-            <abbr title="Gender">Gender:</abbr>{{contact.gender | genderFilter}}<br/>
-            <p data-ng-repeat="address in contact.addresses | filter:{isActive: true}:true">
-                {{address.line1}}<br/>
-                {{address.line2}}<br/>
-                {{address.phone}}<br/>
-                {{address.postalCode}}
-            </p>
-        </address>
+        <div data-ng-repeat="contact in contacts" class="col-md-4">
+            <a data-ng-href="#!/contacts/{{contact._id}}" class=" contact-block">
+                <strong>{{contact.firstName}} {{contact.lastName}}</strong><br />
+                <abbr title="Email">Email:</abbr>{{contact.email}}<br/>
+                <abbr title="Phone">Phone:</abbr> {{contact.phone}}<br/>
+                <abbr title="Gender">Gender:</abbr>{{contact.gender | genderFilter}}<br/>
+                <p data-ng-repeat="address in contact.addresses | filter:{isActive: true}:true">
+                    {{address.line1}}<br/>
+                    {{address.line2}}<br/>
+                    {{address.phone}}<br/>
+                    {{address.postalCode}}
+                </p>
+            </a>
+        </div>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!contacts.$resolved || contacts.length">
     	No Contacts yet, why don't you <a href="/#!/contacts/create">create one</a>?

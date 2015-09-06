@@ -18,7 +18,7 @@ angular.module('contacts').directive('addressBlock', ['$modal',
             controller: function ($scope) {
             },
             link: function (scope, element, attrs, listingController) {
-                console.log(scope.index);
+                console.log(attrs.addressViewOnly );
 
                 scope.activate = function (address) {
                     listingController.deactivateAll();
@@ -27,7 +27,25 @@ angular.module('contacts').directive('addressBlock', ['$modal',
 
                 scope.delete = function (index) {
                     listingController.delete(index);
-                }
+                };
+
+                scope.edit = function (address) {
+                    var modalInstance = $modal.open({
+                        templateUrl: 'modules/contacts/views/address/addressModal.html',
+                        controller: 'AddressController',
+                        resolve: {
+                            item: function () {
+                                return address;
+                            }
+                        }
+                    });
+
+                    //modalInstance.result.then(function (address) {
+                    //    $scope.blocks.push(address);
+                    //});
+                };
+
+                scope.viewOnly = (attrs.addressViewOnly && attrs.addressViewOnly !== 'false')
             }
         }
     }

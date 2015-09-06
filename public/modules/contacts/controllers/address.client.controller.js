@@ -2,8 +2,9 @@
  * Created by lam on 5/9/15.
  */
 
-angular.module('contacts').controller('AddressController', ['$scope', '$modalInstance',
+angular.module('contacts').controller('AddressController', ['$scope', '$modalInstance','item',
     function ($scope, $modalInstance, item) {
+        console.log(item);
         if (item == undefined)
             $scope.item = {};
         else

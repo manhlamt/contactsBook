@@ -19,13 +19,28 @@ angular.module('contacts').directive('addressListing', ['$modal',
 
                 this.delete = function (index) {
                     $scope.blocks.splice(index, 1);
+
+                    //Check if there's any active address
+                    var activeAddressExist = false;
+                    angular.forEach($scope.blocks, function (block) {
+                        if (block.isActive) {
+                            activeAddressExist = true;
+                            return false;
+                        }
+                    });
+                    //Activate first address if none is active
+                    if (!activeAddressExist)
+                        $scope.blocks[0].isActive = true;
                 };
 
                 $scope.addAddress = function () {
                     if ($scope.blocks.length < 3) {
                         var modalInstance = $modal.open({
                             templateUrl: 'modules/contacts/views/address/addressModal.html',
-                            controller: 'AddressController'
+                            controller: 'AddressController',
+                            resolve: {
+                                item: {}
+                            }
                         });
 
                         modalInstance.result.then(function (address) {
@@ -38,7 +53,7 @@ angular.module('contacts').directive('addressListing', ['$modal',
                 }
             },
             link: function (scope, element, attrs) {
-
+                scope.viewOnly = (attrs.addressViewOnly && attrs.addressViewOnly !== 'false')
             }
         }
     }

@@ -1,21 +1,57 @@
 <section data-ng-controller="ContactsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="contact.name"></h1>
+	<div class="page-header clearfix">
+		<h1 class="pull-left">View Contact</h1>
+		<h2 class="action pull-right">
+			<a href="/#!/contacts/{{contact._id}}/edit"><i class="glyphicon glyphicon-edit"></i></a>
+			<a data-ng-click="remove();"><i class="glyphicon glyphicon-trash"></i></a>
+		</h2>
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == contact.user._id))">
-		<a class="btn btn-primary" href="/#!/contacts/{{contact._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
+	<div class="col-md-6">
+		<form class="form-horizontal" data-ng-submit="create(contactForm.$valid)" name="contactForm" novalidate>
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label" for="firstName">First Name</label>
+					<div class="controls">
+						<p class="form-control-static" id="firstName">{{contact.firstName}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="lastname">Last Name</label>
+					<div class="controls">
+						<p class="form-control-static" id="lastName">{{contact.lastName}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="email">Email</label>
+					<div class="controls">
+						<p class="form-control-static" id="email"> {{contact.email}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="phone">Phone</label>
+					<div class="controls">
+						<p class="form-control-static" id="phone">{{contact.phone}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="gender-radio" class="form-label">Gender</label>
+					<div class="controls" id="gender-radio">
+						<p class="form-control-static" >{{contact.gender | genderFilter}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<a class="btn" href="/#!/contacts">Back</a>
+				</div>
+			</fieldset>
+		</form>
+		<small>
+			<em class="text-muted">
+				Posted on
+				<span data-ng-bind="contact.created | date:'mediumDate'"></span>
+				by
+				<span data-ng-bind="contact.user.displayName"></span>
+			</em>
+		</small>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="contact.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="contact.user.displayName"></span>
-		</em>
-	</small>
+	<div class="col-md-6" address-listing addresses="contact.addresses" address-view-only="true"></div>
 </section>
