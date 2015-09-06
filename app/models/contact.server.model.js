@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema,
+	validator = require('./validators/validator');
 
 /**
  * Contact Schema
@@ -26,7 +27,8 @@ var ContactSchema = new Schema({
 		type: String,
 		default: '',
 		require: 'Please fill in email',
-		trim: true
+		trim: true,
+		validate: [validator.email, 'Email is not valid']
 	},
 	gender: {
 		type: String,
@@ -37,7 +39,8 @@ var ContactSchema = new Schema({
 	phone: {
 		type: String,
 		required: 'Please input phone number',
-		trim: true
+		trim: true,
+		validate: [validator.mobilePhone, 'Phone number is not valid']
 	},
 	addresses: [
 		{
@@ -45,13 +48,13 @@ var ContactSchema = new Schema({
 				type: String,
 				default: '',
 				required: 'Please input address line 1',
-				trim: true,
+				trim: true
 			},
 			line2: {
 				type: String,
 				default: '',
 				required: 'Please input addresss line 2',
-				trim: true,
+				trim: true
 			},
 			phone: {
 				type: String,
@@ -66,7 +69,7 @@ var ContactSchema = new Schema({
 			},
 			isActive: {
 				type: Boolean,
-				default: false,
+				default: false
 			}
 		}
 	],

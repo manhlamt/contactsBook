@@ -82,7 +82,9 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 				contactId: $stateParams.contactId
 			}, function () {
 				$scope.loading = false;
-			});
+				;
+				console.log($scope.contact.phone)
+			})
 		};
 	}
 ]);

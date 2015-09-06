@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label class="control-label" for="phone">Phone</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="phone" name="phone" id="phone" class="form-control" placeholder="eg: 0948448234" required>
+                        <input ng-pattern="/^0\d{8,10}$/" type="text" data-ng-model="phone" name="phone" id="phone" class="form-control" placeholder="eg: 0948448234" required>
                         <span ng-show="contactForm.phone.$invalid && contactForm.phone.$dirty" class="help-block text-warning"> Phone is not valid.</span>
                     </div>
                 </div>
