@@ -14,4 +14,16 @@ address {
 .contact-block:hover {
     text-decoration: none;
     color: inherit;
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.contact-block:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
+address.active {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
 }
