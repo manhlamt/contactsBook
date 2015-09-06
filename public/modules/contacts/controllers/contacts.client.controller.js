@@ -25,7 +25,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 			// Redirect after save
 			contact.$save(function(response) {
-				$location.path('contacts/');
+				$location.path('contacts');
 
 				// Clear form fields
 				$scope.name = '';
@@ -77,12 +77,17 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		// Find existing Contact
 		$scope.findOne = function() {
-			$scope.loading = true;
-			$scope.contact = Contacts.get({ 
-				contactId: $stateParams.contactId
-			}, function () {
-				$scope.loading = false;
-			});
+			console.log($stateParams.contactId);
+			if ($stateParams.contactId == '') {
+				$location.path('contacts');
+			} else {
+				$scope.loading = true;
+				$scope.contact = Contacts.get({
+					contactId: $stateParams.contactId
+				}, function () {
+					$scope.loading = false;
+				});
+			}
 		};
 	}
 ]);
