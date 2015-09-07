@@ -3,10 +3,56 @@
         <h1 class="pull-left">Contacts</h1>
         <h2 class="action pull-right" data-ng-show="!loading">
             <a href="/#!/contacts/create"><i class="glyphicon glyphicon-plus"></i></a>
+            <a data-ng-click="showFilter = !showFilter"><i class="glyphicon glyphicon-filter"></i></a>
         </h2>
     </div>
+    <div class="panel panel-default" data-ng-show="showFilter">
+        <form name="filterForm" class="container-fluid panel-body novalidate" novalidate>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="filter-firstname">First Name</label>
+                    <input type="text" class="form-control" id="filter-firstname" placeholder="First Name" data-ng-model="filter.firstName">
+                </div>
+                <div class="form-group">
+                    <label for="filter-phone">Phone</label>
+                    <input type="text" class="form-control" id="filter-phone" placeholder="Phone" data-ng-model="filter.phone">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="filter-lastname">Last Name</label>
+                    <input type="text" class="form-control" id="filter-lastname" placeholder="Last Name" data-ng-model="filter.lastName">
+                </div>
+                <div class="form-group">
+                    <label for="filter-email">Email</label>
+                    <input type="text" class="form-control" id="filter-email" placeholder="Email" data-ng-model="filter.email">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="filter-gender-radio">Email address</label>
+                    <div class="controls" id="filter-gender-radio">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="gender-male" value="m" name="gender-male" ng-checked="filter.gender.indexOf('m') > -1" data-ng-click="toogleFilterSelection('m')"> Male
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="gender-female" value="f" name="gender-female" ng-checked="filter.gender.indexOf('f') > -1" data-ng-click="toogleFilterSelection('f')"> Female
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="gender-undefined" value="u" name="gender-undefined" ng-checked="filter.gender.indexOf('u') > -1" data-ng-click="toogleFilterSelection('u')"> You tell me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-default" data-ng-click="resetFilter()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="row" data-ng-show="!loading">
-        <div data-ng-repeat="contact in contacts" class="col-md-4">
+        <div data-ng-repeat="contact in contacts | filter : filter : filterFunction" class="col-md-4">
             <a data-ng-href="#!/contacts/{{contact._id}}" class=" contact-block">
                 <strong>{{contact.firstName}} {{contact.lastName}}</strong><br />
                 <abbr title="Email">Email:</abbr>{{contact.email}}<br/>
