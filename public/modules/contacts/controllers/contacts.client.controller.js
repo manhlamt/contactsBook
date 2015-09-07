@@ -9,6 +9,10 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 		$scope.addresses = [];
 
+		$scope.filter = {
+			gender: []
+		};
+
 		// Create new Contact
 		$scope.create = function(valid) {
 			if (!valid) return false;
@@ -91,6 +95,32 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 					$scope.loading = false;
 				});
 			}
+		};
+
+		//Filter list of contacts
+		$scope.filterFunction = function (actual, expected) {
+			console.log(actual, expected);
+			if (Array.isArray(expected)) {
+				console.log(expected.length === 0 || expected.indexOf(actual) > -1);
+				return expected.length === 0 || expected.indexOf(actual) > -1;
+			} else if (typeof  expected === 'string'){
+				return actual.toLowerCase().indexOf(expected.toLowerCase()) > -1;
+			}
+		};
+
+		$scope.toogleFilterSelection = function (string) {
+			var idx = $scope.filter.gender.indexOf(string);
+			if (idx > -1) {
+				$scope.filter.gender.splice(idx, 1);
+			} else {
+				$scope.filter.gender.push(string);
+			}
+		};
+
+		$scope.resetFilter = function () {
+			$scope.filter = {
+				gender: []
+			};
 		};
 	}
 ]);

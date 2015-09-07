@@ -27,3 +27,6 @@ address.active {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
 }
+form.novalidate .ng-valid.ng-dirty {
+    border-color: #ccc;
+}
