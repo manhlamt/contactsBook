@@ -103,7 +103,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 			if (Array.isArray(expected)) {
 				console.log(expected.length === 0 || expected.indexOf(actual) > -1);
 				return expected.length === 0 || expected.indexOf(actual) > -1;
-			} else if (typeof  expected == 'string'){
+			} else if (typeof  expected === 'string'){
 				return actual.toLowerCase().indexOf(expected.toLowerCase()) > -1;
 			}
 		};
@@ -121,6 +121,6 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 			$scope.filter = {
 				gender: []
 			};
-		}
+		};
 	}
 ]);
