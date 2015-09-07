@@ -53,7 +53,7 @@ To build this application for production environment, run:
 ```
 $ grunt build
 ```
-Because grunt will read environment config to looks for application's files, ,make sure you run this command in development environment. After running this command, a minified and concat-ed versions for your application will be create under public/dist make sure it link to the correct file in config/env/production.js.
+Because grunt will read environment config to look for source files, ,make sure you run this command in development environment. After running this command, a minified and concat-ed version for your script will be create under public/dist make sure it link to the correct file in config/env/production.js.
 
 ### Contacts
 
